@@ -1,7 +1,8 @@
 version: '2'
 services:
   mysqlmaster:
-    build: ./mysql-gr
+    build:
+      context: ./mysql-gr
     environment:
 #      - "MYSQL_ROOT_PASSWORD=aTestPwd"
 #      - "MYSQL_REPLICATION_USER=rpl_user"
@@ -16,7 +17,8 @@ services:
      entrypoint:
       - --group_replication_bootstrap_group=ON
   mysqlslave:
-    build: ./mysql-gr
+    build:
+      context: ./mysql-gr
     environment:
 #      - "MYSQL_ROOT_PASSWORD=root"
       - character-set-server=utf8
