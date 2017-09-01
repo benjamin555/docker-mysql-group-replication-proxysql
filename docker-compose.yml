@@ -13,7 +13,8 @@ services:
         volumes:
           - ./data/mysql-master:/var/lib/mysql/
           - ./config/mysql-master:/etc/mysql/conf.d/
-        command: entrypoint.sh --group_replication_bootstrap_group=ON
+          - ./mgr-entry.sh:/mgr-entry.sh
+        command: /mgr-entry.sh --group_replication_bootstrap_group=ON
     #     entrypoint:
     #        - /entrypoint.sh
     #        - --group_replication_bootstrap_group=ON
@@ -28,7 +29,8 @@ services:
         volumes:
           - ./data/mysql-slave:/var/lib/mysql/
           - ./config/mysql-slave:/etc/mysql/conf.d/
-        command: entrypoint.sh --group_replication_group_seeds='mysqlmaster:6606'
+          - ./mgr-entry.sh:/mgr-entry.sh
+        command: /mgr-entry.sh --group_replication_group_seeds='mysqlmaster:6606'
     #     entrypoint:
     #        - /entrypoint.sh
     #        - --group_replication_group_seeds='mysqlmaster:6606'

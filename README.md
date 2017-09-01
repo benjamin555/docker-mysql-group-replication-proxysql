@@ -4,3 +4,8 @@ For detailed article refere to http://mysqlrelease.com/2016/08/mysql-group-repli
 
 
 docker network create cluster1
+
+docker run -d  --name=node1  dockermysqlgroupreplicationproxysql_mysqlmaster --group_replication_bootstrap_group=ON
+
+docker run -d  --name=node2  dockermysqlgroupreplicationproxysql_mysqlslave --group_replication_group_seeds='node1:6606'
+
