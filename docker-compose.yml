@@ -16,7 +16,8 @@ services:
       - ./data/mysql-master:/var/lib/mysql/
       - ./config/mysql-master:/etc/mysql/conf.d/
      entrypoint:
-      - --group_replication_bootstrap_group=ON
+      - group_replication_bootstrap_group=ON
+
   mysqlslave:
     build:
       context: ./mysql-gr
@@ -31,7 +32,7 @@ services:
       - ./data/mysql-slave:/var/lib/mysql/
       - ./config/mysql-slave:/etc/mysql/conf.d/
      entrypoint:
-      - --group_replication_group_seeds='mysqlmaster:6606'
+      - group_replication_group_seeds='mysqlmaster:6606'
 #  mysqlconfigure:
 #    image: .
 #    environment:
