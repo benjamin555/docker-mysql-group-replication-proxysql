@@ -1,8 +1,7 @@
 version: '2'
 services:
   mysqlmaster:
-    build:
-      context: ./mysql-gr
+    build: .
     environment:
 #      - "MYSQL_ROOT_PASSWORD=aTestPwd"
 #      - "MYSQL_REPLICATION_USER=rpl_user"
@@ -14,13 +13,12 @@ services:
     volumes:
       - ./data/mysql-master:/var/lib/mysql/
       - ./config/mysql-master:/etc/mysql/conf.d/
-#    command: /entrypoint.sh --group_replication_bootstrap_group=ON
+    command: /entrypoint.sh --group_replication_bootstrap_group=ON
 #     entrypoint:
 #        - /entrypoint.sh
 #        - --group_replication_bootstrap_group=ON
   mysqlslave:
-    build:
-      context: ./mysql-gr
+     build: .
     environment:
 #      - "MYSQL_ROOT_PASSWORD=root"
       - character-set-server=utf8
@@ -30,7 +28,7 @@ services:
     volumes:
       - ./data/mysql-slave:/var/lib/mysql/
       - ./config/mysql-slave:/etc/mysql/conf.d/
-#    command: /entrypoint.sh --group_replication_group_seeds='mysqlmaster:6606'
+    command: /entrypoint.sh --group_replication_group_seeds='mysqlmaster:6606'
 #     entrypoint:
 #        - /entrypoint.sh
 #        - --group_replication_group_seeds='mysqlmaster:6606'
