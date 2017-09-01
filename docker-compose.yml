@@ -3,7 +3,6 @@ services:
   mysqlmaster:
     build:
       context: ./mysql-gr
-
     environment:
 #      - "MYSQL_ROOT_PASSWORD=aTestPwd"
 #      - "MYSQL_REPLICATION_USER=rpl_user"
@@ -21,7 +20,6 @@ services:
   mysqlslave:
     build:
       context: ./mysql-gr
-
     environment:
 #      - "MYSQL_ROOT_PASSWORD=root"
       - character-set-server=utf8
