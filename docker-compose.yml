@@ -9,13 +9,13 @@ services:
 #      - "MYSQL_REPLICATION_PASSWORD=rpl_pass"
       - character-set-server=utf8
       - collation-server=utf8_general_ci
-    networks:
-       - cluster1
+#    networks:
+#       - cluster1
     volumes:
       - ./data/mysql-master:/var/lib/mysql/
       - ./config/mysql-master:/etc/mysql/conf.d/
-#     entrypoint:
-#      - group_replication_bootstrap_group=ON
+     entrypoint:
+      - --group_replication_bootstrap_group=ON
 
   mysqlslave:
     build:
@@ -24,13 +24,13 @@ services:
 #      - "MYSQL_ROOT_PASSWORD=root"
       - character-set-server=utf8
       - collation-server=utf8_general_ci
-    networks:
-       - cluster1
+#    networks:
+#       - cluster1
     volumes:
       - ./data/mysql-slave:/var/lib/mysql/
       - ./config/mysql-slave:/etc/mysql/conf.d/
-#     entrypoint:
-#      - group_replication_group_seeds='mysqlmaster:6606'
+     entrypoint:
+      - --group_replication_group_seeds='mysqlmaster:6606'
 #  mysqlconfigure:
 #    image: .
 #    environment:
