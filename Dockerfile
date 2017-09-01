@@ -6,4 +6,5 @@ EXPOSE 3306
 COPY mgr-entry.sh /entrypoint.sh
 
 
-ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/bin/bash"]
