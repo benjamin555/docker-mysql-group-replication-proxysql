@@ -2,6 +2,7 @@ version: '2'
 services:
   mysqlmaster:
         build: .
+        container_name: node1
         environment:
     #      - "MYSQL_ROOT_PASSWORD=aTestPwd"
     #      - "MYSQL_REPLICATION_USER=rpl_user"
@@ -19,6 +20,7 @@ services:
     #        - --group_replication_bootstrap_group=ON
   mysqlslave:
         build: .
+        container_name: node2
         environment:
     #      - "MYSQL_ROOT_PASSWORD=root"
           - character-set-server=utf8
@@ -28,7 +30,7 @@ services:
         volumes:
           - ./data/mysql-slave:/var/lib/mysql/
           - ./config/mysql-slave:/etc/mysql/conf.d/
-        command:  --group_replication_group_seeds='mysqlmaster:6606'
+        command:  --group_replication_group_seeds='node1:6606'
     #     entrypoint:
     #        - /entrypoint.sh
     #        - --group_replication_group_seeds='mysqlmaster:6606'
